@@ -6,12 +6,13 @@ on:
   workflow_dispatch:
     inputs:
       dataset:
-        description: "Dataset a ingerir"
-        required: true
-        default: "misocial"
+        description: "Dataset a ingerir (vazio = todos, usado no cron diário)"
+        required: false
         type: choice
         options:
+          - ""
           - misocial
+          - misocial_mes_estado
       uf:
         description: "UFs separadas por vírgula"
         required: true
@@ -36,8 +37,17 @@ jobs:
       - run: alembic upgrade head
       - run: python -m scripts.seed_municipios
       - run: python -m scripts.seed_indicadores
-      - run: >-
+      - name: Ingerir misocial (município/mês)
+        if: github.event_name == 'schedule' || github.event.inputs.dataset == '' || github.event.inputs.dataset == 'misocial'
+        run: >-
           python -m ingestion.run_ingestion
-          --dataset ${{ github.event.inputs.dataset || 'misocial' }}
+          --dataset misocial
+          --uf ${{ github.event.inputs.uf || 'BA,PE,RN' }}
+          --competencia ${{ github.event.inputs.competencia || 'latest' }}
+      - name: Ingerir misocial_mes_estado (estado/mês)
+        if: github.event_name == 'schedule' || github.event.inputs.dataset == '' || github.event.inputs.dataset == 'misocial_mes_estado'
+        run: >-
+          python -m ingestion.run_ingestion
+          --dataset misocial_mes_estado
           --uf ${{ github.event.inputs.uf || 'BA,PE,RN' }}
           --competencia ${{ github.event.inputs.competencia || 'latest' }}
