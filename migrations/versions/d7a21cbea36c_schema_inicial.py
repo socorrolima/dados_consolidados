@@ -1,8 +1,8 @@
 """schema inicial
 
-Revision ID: edb6e95a6421
+Revision ID: d7a21cbea36c
 Revises: 
-Create Date: 2026-10-19 12:07:27.002282
+Create Date: 2026-10-19 12:23:12.675579
 
 """
 
@@ -13,7 +13,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = "edb6e95a6421"
+revision: str = "d7a21cbea36c"
 down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -87,7 +87,7 @@ def upgrade() -> None:
     )
     op.create_table(
         "fato_indicador_estado_mes",
-        sa.Column("id", sa.BigInteger(), nullable=False),
+        sa.Column("id", sa.Integer(), nullable=False),
         sa.Column("uf", sa.String(length=2), nullable=False),
         sa.Column("indicador_id", sa.Integer(), nullable=False),
         sa.Column("competencia", sa.Date(), nullable=False),
@@ -108,7 +108,7 @@ def upgrade() -> None:
     )
     op.create_table(
         "fato_indicador_municipio_ano",
-        sa.Column("id", sa.BigInteger(), nullable=False),
+        sa.Column("id", sa.Integer(), nullable=False),
         sa.Column("municipio_id", sa.Integer(), nullable=False),
         sa.Column("indicador_id", sa.Integer(), nullable=False),
         sa.Column("ano", sa.SmallInteger(), nullable=False),
@@ -132,7 +132,7 @@ def upgrade() -> None:
     )
     op.create_table(
         "fato_indicador_municipio_mes",
-        sa.Column("id", sa.BigInteger(), nullable=False),
+        sa.Column("id", sa.Integer(), nullable=False),
         sa.Column("municipio_id", sa.Integer(), nullable=False),
         sa.Column("indicador_id", sa.Integer(), nullable=False),
         sa.Column("competencia", sa.Date(), nullable=False),

@@ -43,7 +43,11 @@ class DimIndicador(db.Model):
 class FatoIndicadorMunicipioMes(db.Model):
     __tablename__ = "fato_indicador_municipio_mes"
 
-    id = db.Column(db.BigInteger, primary_key=True)
+    # Integer (não BigInteger): no SQLite, só "INTEGER PRIMARY KEY" vira alias
+    # do rowid com autoincrement; BigInteger compila para BIGINT e quebra o
+    # autoincrement em dev/CI. Integer (31 bits) sobra para o volume previsto
+    # (milhões de linhas, não bilhões) nas 3 tabelas fato.
+    id = db.Column(db.Integer, primary_key=True)
     municipio_id = db.Column(
         db.Integer,
         db.ForeignKey("dim_municipio.id", ondelete="RESTRICT"),
@@ -76,7 +80,7 @@ class FatoIndicadorMunicipioMes(db.Model):
 class FatoIndicadorEstadoMes(db.Model):
     __tablename__ = "fato_indicador_estado_mes"
 
-    id = db.Column(db.BigInteger, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     uf = db.Column(db.String(2), nullable=False)
     indicador_id = db.Column(
         db.Integer,
@@ -105,7 +109,7 @@ class FatoIndicadorEstadoMes(db.Model):
 class FatoIndicadorMunicipioAno(db.Model):
     __tablename__ = "fato_indicador_municipio_ano"
 
-    id = db.Column(db.BigInteger, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     municipio_id = db.Column(
         db.Integer,
         db.ForeignKey("dim_municipio.id", ondelete="RESTRICT"),
