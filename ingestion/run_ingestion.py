@@ -2,7 +2,7 @@
 
 Uso:
     python -m ingestion.run_ingestion --dataset misocial --uf BA,PE,RN --competencia latest
-    python -m ingestion.run_ingestion --dataset misocial --uf BA,PE,RN --competencia 202509
+    python -m ingestion.run_ingestion --dataset misocial_mes_estado --uf BA,PE,RN --competencia 202509
 
 Qualquer exceção não tratada propaga e termina o processo com exit code != 0
 — isso é o que faz o job falhar visivelmente no GitHub Actions, em vez de
@@ -22,10 +22,17 @@ from app.models.ingestao import (
     IngestaoExecucao,
 )
 from app.models.municipio import DimMunicipio
-from ingestion.datasets.misocial import buscar_municipio_mes, campo_sagi
-from ingestion.loader import upsert_fato_municipio_mes
+from ingestion.datasets.misocial import buscar_municipio_mes
+from ingestion.datasets.misocial import campo_sagi as campo_sagi_misocial
+from ingestion.datasets.misocial_mes_estado import buscar_estado_mes
+from ingestion.datasets.misocial_mes_estado import campo_sagi as campo_sagi_estado
+from ingestion.loader import upsert_fato_estado_mes, upsert_fato_municipio_mes
 from ingestion.sagi_client import IngestionFetchError
-from ingestion.validators import ValidationError, valida_doc_municipio_mes
+from ingestion.validators import (
+    ValidationError,
+    valida_doc_estado_mes,
+    valida_doc_municipio_mes,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -41,21 +48,17 @@ def _mapa_municipio_por_codigo6() -> dict[str, int]:
     return {m.codigo_ibge[:6]: m.id for m in DimMunicipio.query.all()}
 
 
-def _ingerir_misocial(
-    ufs: list[str], anomes_s: str, ingestao: IngestaoExecucao
-) -> None:
-    indicadores, docs = buscar_municipio_mes(ufs, anomes_s)
-    indicador_id_por_campo = {campo_sagi(i): i.id for i in indicadores}
-    municipio_por_codigo6 = _mapa_municipio_por_codigo6()
-
+def _processar_documentos(docs: list[dict], validar) -> tuple[list[dict], int]:
+    """Valida cada documento (função `validar(doc) -> ResultadoValidacao`),
+    agregando linhas e contando rejeições. Avisos são sempre logados, nunca
+    silenciados; um documento rejeitado não derruba o lote inteiro (ver
+    checagem de taxa de rejeição em `_ingerir`)."""
     linhas: list[dict] = []
     rejeitadas = 0
 
     for doc in docs:
         try:
-            resultado = valida_doc_municipio_mes(
-                doc, indicador_id_por_campo, municipio_por_codigo6
-            )
+            resultado = validar(doc)
         except ValidationError as exc:
             logger.warning("documento rejeitado: %s", exc)
             rejeitadas += 1
@@ -65,6 +68,17 @@ def _ingerir_misocial(
             logger.warning(aviso)
         linhas.extend(resultado.linhas)
 
+    return linhas, rejeitadas
+
+
+def _ingerir(
+    docs: list[dict],
+    validar,
+    gravar,
+    ingestao: IngestaoExecucao,
+) -> None:
+    linhas, rejeitadas = _processar_documentos(docs, validar)
+
     total_docs = len(docs)
     taxa_rejeicao = (rejeitadas / total_docs) if total_docs else 0.0
     if taxa_rejeicao > LIMIAR_REJEICAO:
@@ -73,15 +87,44 @@ def _ingerir_misocial(
             f"({rejeitadas}/{total_docs} documentos) — abortando sem gravar"
         )
 
-    gravadas = upsert_fato_municipio_mes(linhas, ingestao.id)
+    gravadas = gravar(linhas, ingestao.id)
 
     ingestao.linhas_lidas = total_docs
     ingestao.linhas_gravadas = gravadas
     ingestao.linhas_rejeitadas = rejeitadas
 
 
+def _ingerir_misocial(
+    ufs: list[str], anomes_s: str, ingestao: IngestaoExecucao
+) -> None:
+    indicadores, docs = buscar_municipio_mes(ufs, anomes_s)
+    indicador_id_por_campo = {campo_sagi_misocial(i): i.id for i in indicadores}
+    municipio_por_codigo6 = _mapa_municipio_por_codigo6()
+
+    def validar(doc):
+        return valida_doc_municipio_mes(
+            doc, indicador_id_por_campo, municipio_por_codigo6
+        )
+
+    _ingerir(docs, validar, upsert_fato_municipio_mes, ingestao)
+
+
+def _ingerir_misocial_mes_estado(
+    ufs: list[str], anomes_s: str, ingestao: IngestaoExecucao
+) -> None:
+    indicadores, docs = buscar_estado_mes(ufs, anomes_s)
+    indicador_id_por_campo = {campo_sagi_estado(i): i.id for i in indicadores}
+    ufs_validas = set(ufs)
+
+    def validar(doc):
+        return valida_doc_estado_mes(doc, indicador_id_por_campo, ufs_validas)
+
+    _ingerir(docs, validar, upsert_fato_estado_mes, ingestao)
+
+
 _DATASETS = {
     "misocial": _ingerir_misocial,
+    "misocial_mes_estado": _ingerir_misocial_mes_estado,
 }
 
 

@@ -2,13 +2,27 @@
 
 Uso: python -m scripts.seed_indicadores
 
-Nesta fase só catalogamos os campos do dataset SUASWEB ("misocial"), porque
-foi o único cujo esquema completo de campos já confirmamos lendo a resposta
-real da API (ver conversa de mapeamento do MDS). Os demais datasets (CNEAS,
-Auxílio Gás, ADA, IGD-E, SIMPETI) só tiveram títulos de recurso confirmados,
-não a lista completa de campos — serão catalogados quando o respectivo
-módulo de ingestão for construído (Fase 3 do plano) e os campos exatos forem
-reconfirmados contra a API, em vez de adivinhados aqui.
+Catalogamos aqui os campos de dois recursos cujo esquema completo já
+confirmamos lendo a resposta real da API:
+- "misocial" (SUASWEB): repasse e saldo municipais.
+- "misocial_mes_estado": repasse estadual, IGD-E (PBF/PAB), ADA (totais) e
+  SIMPETI por estado.
+
+Descoberta da Fase 3: o repasse estadual do SUASWEB ("suas_repasse_uf_*")
+não vem pelo mesmo recurso "misocial" do repasse municipal — vem por
+"misocial_mes_estado", junto com IGD-E/ADA/SIMPETI. Por isso
+dataset_origem desses campos é "misocial_mes_estado", não "misocial".
+
+O recurso "misocial_mes_estado" real também expõe dezenas de outros
+campos (Academia do Futebol, Alimenta Brasil, Brasil Fraterno, Auxílio
+Gás, CEBAS, insegurança alimentar) e o ADA tem variantes por tipo de
+família (indígena, quilombola, ribeirinha etc.), não só os totais — fora
+do escopo aprovado para esta fase, ficam para quando houver demanda.
+
+CNEAS (entidades socioassistenciais) não é catalogado aqui: descobrimos
+que é um registro por entidade (CNPJ, razão social, endereço), não um
+indicador agregado — não cabe no modelo fato/dimensão atual sem uma
+decisão de schema à parte.
 """
 
 import logging
@@ -28,7 +42,12 @@ from app.models.indicador import (
 logger = logging.getLogger(__name__)
 
 DATASET_MISOCIAL = "misocial"
+DATASET_MISOCIAL_MES_ESTADO = "misocial_mes_estado"
 UNIDADE_REAIS = "reais"
+UNIDADE_UNIDADES = "unidades"
+UNIDADE_INDICE = "indice"
+UNIDADE_PERCENTUAL = "percentual"
+UNIDADE_KG = "kg"
 
 CATEGORIA_GESTAO_SUAS = "gestao_suas"
 CATEGORIA_PROTECAO_BASICA = "protecao_social_basica"
@@ -41,6 +60,9 @@ CATEGORIA_SEM_CLASSIFICACAO = "sem_classificacao"
 CATEGORIA_CONVENIO = "convenio"
 CATEGORIA_PROCAD_SUAS = "procad_suas"
 CATEGORIA_ACAO_CONTINUADA = "acao_continuada"
+CATEGORIA_IGD_E = "igd_e"
+CATEGORIA_ACAO_DISTRIBUICAO_ALIMENTOS = "acao_distribuicao_alimentos"
+CATEGORIA_PETI = "peti"
 
 # (sufixo do campo sem o prefixo de escopo, nome de exibição, categoria)
 _REPASSE_CAMPOS = [
@@ -145,6 +167,154 @@ _SALDO_CC_MUNICIPAL_CAMPOS = [
 ]
 
 
+# Campos comuns às duas variantes do IGD-E (PBF e PAB), confirmados contra a
+# API real. Definições de TAAS/TAC/TAFE conforme a Portaria MDS nº 1.041/2024
+# (IGD-E/IGD-M): TAC tem peso 50%, TAAS e TAFE têm peso 25% cada. O índice
+# final (indice_gestao_descentralizada_d) varia de 0 a 1, mas as taxas e o
+# fator_calculo_1 em si vêm da API em escala percentual (0-100) — confirmado
+# contra dado real: fator_calculo_1_d bate com indice_gestao_descentralizada_d
+# * 100. Só fator_redutor_d (um multiplicador de penalidade, ex. 0.8) vem
+# mesmo em 0-1.
+_IGDE_CAMPOS_COMUNS = [
+    (
+        "taas_d",
+        "Taxa de Acompanhamento da Agenda de Saúde (TAAS)",
+        UNIDADE_PERCENTUAL,
+    ),
+    ("tac_d", "Taxa de Atualização Cadastral (TAC)", UNIDADE_PERCENTUAL),
+    (
+        "tafe_d",
+        "Taxa de Acompanhamento da Frequência Escolar (TAFE)",
+        UNIDADE_PERCENTUAL,
+    ),
+    ("fator_calculo_1_d", "Fator de cálculo 1", UNIDADE_PERCENTUAL),
+    ("fator_redutor_d", "Fator redutor", UNIDADE_INDICE),
+    ("vlr_teto_mensal_repasse_d", "Teto mensal de repasse", UNIDADE_REAIS),
+    ("vlr_sem_incentivos_d", "Valor sem incentivos", UNIDADE_REAIS),
+    ("vlr_incentivo_1_d", "Valor do incentivo 1", UNIDADE_REAIS),
+    ("vlr_incentivo_2_d", "Valor do incentivo 2", UNIDADE_REAIS),
+    ("vlr_incentivo_3_d", "Valor do incentivo 3", UNIDADE_REAIS),
+    ("vlr_total_incentivos_d", "Valor total dos incentivos", UNIDADE_REAIS),
+    (
+        "vlr_repasse_com_incentivos_d",
+        "Valor do repasse com incentivos",
+        UNIDADE_REAIS,
+    ),
+    ("vlr_repassado_d", "Valor efetivamente repassado", UNIDADE_REAIS),
+    (
+        "qtde_pessoas_acomp_escolar_l",
+        "Quantidade de pessoas acompanhadas (frequência escolar)",
+        UNIDADE_UNIDADES,
+    ),
+    (
+        "qtde_criancas_adolescentes_l",
+        "Quantidade de crianças e adolescentes no público-alvo",
+        UNIDADE_UNIDADES,
+    ),
+    (
+        "qtde_familias_perfil_cadunico_inscritas_l",
+        "Quantidade de famílias com perfil no Cadastro Único inscritas",
+        UNIDADE_UNIDADES,
+    ),
+    (
+        "qtde_atualizacoes_perfil_cadunico_l",
+        "Quantidade de atualizações cadastrais no Cadastro Único",
+        UNIDADE_UNIDADES,
+    ),
+    (
+        "qtde_publico_com_cond_saude_informada_l",
+        "Quantidade do público com condicionalidade de saúde informada",
+        UNIDADE_UNIDADES,
+    ),
+    (
+        "qtde_publico_perfil_saude_l",
+        "Quantidade do público com perfil saúde",
+        UNIDADE_UNIDADES,
+    ),
+]
+
+# Campo exclusivo do IGD-E PBF — não existe para PAB no esquema real.
+_IGDE_PBF_CAMPO_EXCLUSIVO = (
+    "indice_gestao_descentralizada_d",
+    "Índice de Gestão Descentralizada (IGD-E)",
+    UNIDADE_INDICE,
+)
+
+_ADA_CAMPOS = [
+    (
+        "qtde_total_cestas_alimentos_entregues_d",
+        "Quantidade total de cestas de alimentos entregues",
+        UNIDADE_UNIDADES,
+    ),
+    (
+        "total_kg_alimentos_entregues_d",
+        "Total de quilos de alimentos entregues",
+        UNIDADE_KG,
+    ),
+]
+
+# Eixos do PETI conforme Resolução CNAS nº 8/2013.
+_SIMPETI_EIXOS = [
+    ("01", "Identificação"),
+    ("02", "Informação e Mobilização"),
+    ("03", "Proteção Social"),
+    ("04", "Defesa e Responsabilização"),
+    ("05", "Monitoramento"),
+]
+
+
+def _monta_catalogo_estado_mes() -> list[dict]:
+    catalogo = []
+
+    for programa, nome_programa in (("pbf", "IGD-E PBF"), ("pab", "IGD-E PAB")):
+        campos = list(_IGDE_CAMPOS_COMUNS)
+        if programa == "pbf":
+            campos.append(_IGDE_PBF_CAMPO_EXCLUSIVO)
+        for sufixo, nome, unidade in campos:
+            catalogo.append(
+                {
+                    "codigo": f"misocial_mes_estado.igde_{programa}_{sufixo}",
+                    "nome_exibicao": f"{nome_programa} — {nome}",
+                    "dataset_origem": DATASET_MISOCIAL_MES_ESTADO,
+                    "granularidade": GRANULARIDADE_ESTADO_MES,
+                    "unidade": unidade,
+                    "categoria": CATEGORIA_IGD_E,
+                    "descricao": f"{nome_programa}: {nome}.",
+                }
+            )
+
+    for sufixo, nome, unidade in _ADA_CAMPOS:
+        catalogo.append(
+            {
+                "codigo": f"misocial_mes_estado.ada_{sufixo}",
+                "nome_exibicao": f"ADA — {nome}",
+                "dataset_origem": DATASET_MISOCIAL_MES_ESTADO,
+                "granularidade": GRANULARIDADE_ESTADO_MES,
+                "unidade": unidade,
+                "categoria": CATEGORIA_ACAO_DISTRIBUICAO_ALIMENTOS,
+                "descricao": f"Ação de Distribuição de Alimentos (ADA): {nome}.",
+            }
+        )
+
+    for numero, nome_eixo in _SIMPETI_EIXOS:
+        catalogo.append(
+            {
+                "codigo": f"misocial_mes_estado.simpeti_qtd_acoes_eixo_{numero}_uf_l",
+                "nome_exibicao": f"PETI — Ações do Eixo {int(numero)} ({nome_eixo})",
+                "dataset_origem": DATASET_MISOCIAL_MES_ESTADO,
+                "granularidade": GRANULARIDADE_ESTADO_MES,
+                "unidade": UNIDADE_UNIDADES,
+                "categoria": CATEGORIA_PETI,
+                "descricao": (
+                    f"Quantidade de ações estratégicas do PETI no eixo "
+                    f"'{nome_eixo}', por estado (Resolução CNAS nº 8/2013)."
+                ),
+            }
+        )
+
+    return catalogo
+
+
 def _monta_catalogo() -> list[dict]:
     catalogo = []
 
@@ -162,9 +332,9 @@ def _monta_catalogo() -> list[dict]:
         )
         catalogo.append(
             {
-                "codigo": f"misocial.suas_repasse_uf_{sufixo}",
+                "codigo": f"misocial_mes_estado.suas_repasse_uf_{sufixo}",
                 "nome_exibicao": f"{nome} (repasse estadual — Fundo Estadual)",
-                "dataset_origem": DATASET_MISOCIAL,
+                "dataset_origem": DATASET_MISOCIAL_MES_ESTADO,
                 "granularidade": GRANULARIDADE_ESTADO_MES,
                 "unidade": UNIDADE_REAIS,
                 "categoria": categoria,
@@ -184,6 +354,8 @@ def _monta_catalogo() -> list[dict]:
                 "descricao": f"{nome}, saldo em conta corrente SUAS (SUASWEB).",
             }
         )
+
+    catalogo.extend(_monta_catalogo_estado_mes())
 
     codigos = [item["codigo"] for item in catalogo]
     if len(codigos) != len(set(codigos)):
