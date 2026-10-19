@@ -7,6 +7,7 @@ from sqlalchemy import pool
 from alembic import context
 
 import app.models  # noqa: F401 — registra os modelos em db.metadata
+from app.config import resolve_database_url
 from app.extensions import db
 
 # this is the Alembic Config object, which provides
@@ -19,7 +20,11 @@ if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
 # DATABASE_URL vem de variável de ambiente, nunca do alembic.ini commitado.
-config.set_main_option("sqlalchemy.url", os.environ["DATABASE_URL"])
+# resolve_database_url absolutiza sqlite:///relativo — sem isso, o Alembic
+# (cwd) e o Flask-SQLAlchemy (instance/) gravariam em arquivos diferentes.
+config.set_main_option(
+    "sqlalchemy.url", resolve_database_url(os.environ["DATABASE_URL"])
+)
 
 target_metadata = db.metadata
 

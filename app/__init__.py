@@ -28,6 +28,7 @@ def create_app(config_name: str | None = None) -> Flask:
 
     db.init_app(app)
 
+    from app import models  # noqa: F401 — registra os modelos em db.metadata
     from app.routes.auth import auth_bp
     from app.routes.dashboard import dashboard_bp
     from app.routes.api import api_bp

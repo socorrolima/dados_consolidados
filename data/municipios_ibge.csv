@@ -1,0 +1,770 @@
+codigo_ibge,nome,uf
+2900108,Abaíra,BA
+2900207,Abaré,BA
+2900306,Acajutiba,BA
+2900355,Adustina,BA
+2900405,Água Fria,BA
+2900504,Érico Cardoso,BA
+2900603,Aiquara,BA
+2900702,Alagoinhas,BA
+2900801,Alcobaça,BA
+2900900,Almadina,BA
+2901007,Amargosa,BA
+2901106,Amélia Rodrigues,BA
+2901155,América Dourada,BA
+2901205,Anagé,BA
+2901304,Andaraí,BA
+2901353,Andorinha,BA
+2901403,Angical,BA
+2901502,Anguera,BA
+2901601,Antas,BA
+2901700,Antônio Cardoso,BA
+2901809,Antônio Gonçalves,BA
+2901908,Aporá,BA
+2901957,Apuarema,BA
+2902005,Aracatu,BA
+2902054,Araçás,BA
+2902104,Araci,BA
+2902203,Aramari,BA
+2902252,Arataca,BA
+2902302,Aratuípe,BA
+2902401,Aurelino Leal,BA
+2902500,Baianópolis,BA
+2902609,Baixa Grande,BA
+2902658,Banzaê,BA
+2902708,Barra,BA
+2902807,Barra da Estiva,BA
+2902906,Barra do Choça,BA
+2903003,Barra do Mendes,BA
+2903102,Barra do Rocha,BA
+2903201,Barreiras,BA
+2903235,Barro Alto,BA
+2903276,Barrocas,BA
+2903300,Barro Preto,BA
+2903409,Belmonte,BA
+2903508,Belo Campo,BA
+2903607,Biritinga,BA
+2903706,Boa Nova,BA
+2903805,Boa Vista do Tupim,BA
+2903904,Bom Jesus da Lapa,BA
+2903953,Bom Jesus da Serra,BA
+2904001,Boninal,BA
+2904050,Bonito,BA
+2904100,Boquira,BA
+2904209,Botuporã,BA
+2904308,Brejões,BA
+2904407,Brejolândia,BA
+2904506,Brotas de Macaúbas,BA
+2904605,Brumado,BA
+2904704,Buerarema,BA
+2904753,Buritirama,BA
+2904803,Caatiba,BA
+2904852,Cabaceiras do Paraguaçu,BA
+2904902,Cachoeira,BA
+2905008,Caculé,BA
+2905107,Caém,BA
+2905156,Caetanos,BA
+2905206,Caetité,BA
+2905305,Cafarnaum,BA
+2905404,Cairu,BA
+2905503,Caldeirão Grande,BA
+2905602,Camacan,BA
+2905701,Camaçari,BA
+2905800,Camamu,BA
+2905909,Campo Alegre de Lourdes,BA
+2906006,Campo Formoso,BA
+2906105,Canápolis,BA
+2906204,Canarana,BA
+2906303,Canavieiras,BA
+2906402,Candeal,BA
+2906501,Candeias,BA
+2906600,Candiba,BA
+2906709,Cândido Sales,BA
+2906808,Cansanção,BA
+2906824,Canudos,BA
+2906857,Capela do Alto Alegre,BA
+2906873,Capim Grosso,BA
+2906899,Caraíbas,BA
+2906907,Caravelas,BA
+2907004,Cardeal da Silva,BA
+2907103,Carinhanha,BA
+2907202,Casa Nova,BA
+2907301,Castro Alves,BA
+2907400,Catolândia,BA
+2907509,Catu,BA
+2907558,Caturama,BA
+2907608,Central,BA
+2907707,Chorrochó,BA
+2907806,Cícero Dantas,BA
+2907905,Cipó,BA
+2908002,Coaraci,BA
+2908101,Cocos,BA
+2908200,Conceição da Feira,BA
+2908309,Conceição do Almeida,BA
+2908408,Conceição do Coité,BA
+2908507,Conceição do Jacuípe,BA
+2908606,Conde,BA
+2908705,Condeúba,BA
+2908804,Contendas do Sincorá,BA
+2908903,Coração de Maria,BA
+2909000,Cordeiros,BA
+2909109,Coribe,BA
+2909208,Coronel João Sá,BA
+2909307,Correntina,BA
+2909406,Cotegipe,BA
+2909505,Cravolândia,BA
+2909604,Crisópolis,BA
+2909703,Cristópolis,BA
+2909802,Cruz das Almas,BA
+2909901,Curaçá,BA
+2910008,Dário Meira,BA
+2910057,Dias d'Ávila,BA
+2910107,Dom Basílio,BA
+2910206,Dom Macedo Costa,BA
+2910305,Elísio Medrado,BA
+2910404,Encruzilhada,BA
+2910503,Entre Rios,BA
+2910602,Esplanada,BA
+2910701,Euclides da Cunha,BA
+2910727,Eunápolis,BA
+2910750,Fátima,BA
+2910776,Feira da Mata,BA
+2910800,Feira de Santana,BA
+2910859,Filadélfia,BA
+2910909,Firmino Alves,BA
+2911006,Floresta Azul,BA
+2911105,Formosa do Rio Preto,BA
+2911204,Gandu,BA
+2911253,Gavião,BA
+2911303,Gentio do Ouro,BA
+2911402,Glória,BA
+2911501,Gongogi,BA
+2911600,Governador Mangabeira,BA
+2911659,Guajeru,BA
+2911709,Guanambi,BA
+2911808,Guaratinga,BA
+2911857,Heliópolis,BA
+2911907,Iaçu,BA
+2912004,Ibiassucê,BA
+2912103,Ibicaraí,BA
+2912202,Ibicoara,BA
+2912301,Ibicuí,BA
+2912400,Ibipeba,BA
+2912509,Ibipitanga,BA
+2912608,Ibiquera,BA
+2912707,Ibirapitanga,BA
+2912806,Ibirapuã,BA
+2912905,Ibirataia,BA
+2913002,Ibitiara,BA
+2913101,Ibititá,BA
+2913200,Ibotirama,BA
+2913309,Ichu,BA
+2913408,Igaporã,BA
+2913457,Igrapiúna,BA
+2913507,Iguaí,BA
+2913606,Ilhéus,BA
+2913705,Inhambupe,BA
+2913804,Ipecaetá,BA
+2913903,Ipiaú,BA
+2914000,Ipirá,BA
+2914109,Ipupiara,BA
+2914208,Irajuba,BA
+2914307,Iramaia,BA
+2914406,Iraquara,BA
+2914505,Irará,BA
+2914604,Irecê,BA
+2914653,Itabela,BA
+2914703,Itaberaba,BA
+2914802,Itabuna,BA
+2914901,Itacaré,BA
+2915007,Itaeté,BA
+2915106,Itagi,BA
+2915205,Itagibá,BA
+2915304,Itagimirim,BA
+2915353,Itaguaçu da Bahia,BA
+2915403,Itaju do Colônia,BA
+2915502,Itajuípe,BA
+2915601,Itamaraju,BA
+2915700,Itamari,BA
+2915809,Itambé,BA
+2915908,Itanagra,BA
+2916005,Itanhém,BA
+2916104,Itaparica,BA
+2916203,Itapé,BA
+2916302,Itapebi,BA
+2916401,Itapetinga,BA
+2916500,Itapicuru,BA
+2916609,Itapitanga,BA
+2916708,Itaquara,BA
+2916807,Itarantim,BA
+2916856,Itatim,BA
+2916906,Itiruçu,BA
+2917003,Itiúba,BA
+2917102,Itororó,BA
+2917201,Ituaçu,BA
+2917300,Ituberá,BA
+2917334,Iuiu,BA
+2917359,Jaborandi,BA
+2917409,Jacaraci,BA
+2917508,Jacobina,BA
+2917607,Jaguaquara,BA
+2917706,Jaguarari,BA
+2917805,Jaguaripe,BA
+2917904,Jandaíra,BA
+2918001,Jequié,BA
+2918100,Jeremoabo,BA
+2918209,Jiquiriçá,BA
+2918308,Jitaúna,BA
+2918357,João Dourado,BA
+2918407,Juazeiro,BA
+2918456,Jucuruçu,BA
+2918506,Jussara,BA
+2918555,Jussari,BA
+2918605,Jussiape,BA
+2918704,Lafaiete Coutinho,BA
+2918753,Lagoa Real,BA
+2918803,Laje,BA
+2918902,Lajedão,BA
+2919009,Lajedinho,BA
+2919058,Lajedo do Tabocal,BA
+2919108,Lamarão,BA
+2919157,Lapão,BA
+2919207,Lauro de Freitas,BA
+2919306,Lençóis,BA
+2919405,Licínio de Almeida,BA
+2919504,Livramento de Nossa Senhora,BA
+2919553,Luís Eduardo Magalhães,BA
+2919603,Macajuba,BA
+2919702,Macarani,BA
+2919801,Macaúbas,BA
+2919900,Macururé,BA
+2919926,Madre de Deus,BA
+2919959,Maetinga,BA
+2920007,Maiquinique,BA
+2920106,Mairi,BA
+2920205,Malhada,BA
+2920304,Malhada de Pedras,BA
+2920403,Manoel Vitorino,BA
+2920452,Mansidão,BA
+2920502,Maracás,BA
+2920601,Maragogipe,BA
+2920700,Maraú,BA
+2920809,Marcionílio Souza,BA
+2920908,Mascote,BA
+2921005,Mata de São João,BA
+2921054,Matina,BA
+2921104,Medeiros Neto,BA
+2921203,Miguel Calmon,BA
+2921302,Milagres,BA
+2921401,Mirangaba,BA
+2921450,Mirante,BA
+2921500,Monte Santo,BA
+2921609,Morpará,BA
+2921708,Morro do Chapéu,BA
+2921807,Mortugaba,BA
+2921906,Mucugê,BA
+2922003,Mucuri,BA
+2922052,Mulungu do Morro,BA
+2922102,Mundo Novo,BA
+2922201,Muniz Ferreira,BA
+2922250,Muquém do São Francisco,BA
+2922300,Muritiba,BA
+2922409,Mutuípe,BA
+2922508,Nazaré,BA
+2922607,Nilo Peçanha,BA
+2922656,Nordestina,BA
+2922706,Nova Canaã,BA
+2922730,Nova Fátima,BA
+2922755,Nova Ibiá,BA
+2922805,Nova Itarana,BA
+2922854,Nova Redenção,BA
+2922904,Nova Soure,BA
+2923001,Nova Viçosa,BA
+2923035,Novo Horizonte,BA
+2923050,Novo Triunfo,BA
+2923100,Olindina,BA
+2923209,Oliveira dos Brejinhos,BA
+2923308,Ouriçangas,BA
+2923357,Ourolândia,BA
+2923407,Palmas de Monte Alto,BA
+2923506,Palmeiras,BA
+2923605,Paramirim,BA
+2923704,Paratinga,BA
+2923803,Paripiranga,BA
+2923902,Pau Brasil,BA
+2924009,Paulo Afonso,BA
+2924058,Pé de Serra,BA
+2924108,Pedrão,BA
+2924207,Pedro Alexandre,BA
+2924306,Piatã,BA
+2924405,Pilão Arcado,BA
+2924504,Pindaí,BA
+2924603,Pindobaçu,BA
+2924652,Pintadas,BA
+2924678,Piraí do Norte,BA
+2924702,Piripá,BA
+2924801,Piritiba,BA
+2924900,Planaltino,BA
+2925006,Planalto,BA
+2925105,Poções,BA
+2925204,Pojuca,BA
+2925253,Ponto Novo,BA
+2925303,Porto Seguro,BA
+2925402,Potiraguá,BA
+2925501,Prado,BA
+2925600,Presidente Dutra,BA
+2925709,Presidente Jânio Quadros,BA
+2925758,Presidente Tancredo Neves,BA
+2925808,Queimadas,BA
+2925907,Quijingue,BA
+2925931,Quixabeira,BA
+2925956,Rafael Jambeiro,BA
+2926004,Remanso,BA
+2926103,Retirolândia,BA
+2926202,Riachão das Neves,BA
+2926301,Riachão do Jacuípe,BA
+2926400,Riacho de Santana,BA
+2926509,Ribeira do Amparo,BA
+2926608,Ribeira do Pombal,BA
+2926657,Ribeirão do Largo,BA
+2926707,Rio de Contas,BA
+2926806,Rio do Antônio,BA
+2926905,Rio do Pires,BA
+2927002,Rio Real,BA
+2927101,Rodelas,BA
+2927200,Ruy Barbosa,BA
+2927309,Salinas da Margarida,BA
+2927408,Salvador,BA
+2927507,Santa Bárbara,BA
+2927606,Santa Brígida,BA
+2927705,Santa Cruz Cabrália,BA
+2927804,Santa Cruz da Vitória,BA
+2927903,Santa Inês,BA
+2928000,Santaluz,BA
+2928059,Santa Luzia,BA
+2928109,Santa Maria da Vitória,BA
+2928208,Santana,BA
+2928307,Santanópolis,BA
+2928406,Santa Rita de Cássia,BA
+2928505,Santa Terezinha,BA
+2928604,Santo Amaro,BA
+2928703,Santo Antônio de Jesus,BA
+2928802,Santo Estêvão,BA
+2928901,São Desidério,BA
+2928950,São Domingos,BA
+2929008,São Félix,BA
+2929057,São Félix do Coribe,BA
+2929107,São Felipe,BA
+2929206,São Francisco do Conde,BA
+2929255,São Gabriel,BA
+2929305,São Gonçalo dos Campos,BA
+2929354,São José da Vitória,BA
+2929370,São José do Jacuípe,BA
+2929404,São Miguel das Matas,BA
+2929503,São Sebastião do Passé,BA
+2929602,Sapeaçu,BA
+2929701,Sátiro Dias,BA
+2929750,Saubara,BA
+2929800,Saúde,BA
+2929909,Seabra,BA
+2930006,Sebastião Laranjeiras,BA
+2930105,Senhor do Bonfim,BA
+2930154,Serra do Ramalho,BA
+2930204,Sento Sé,BA
+2930303,Serra Dourada,BA
+2930402,Serra Preta,BA
+2930501,Serrinha,BA
+2930600,Serrolândia,BA
+2930709,Simões Filho,BA
+2930758,Sítio do Mato,BA
+2930766,Sítio do Quinto,BA
+2930774,Sobradinho,BA
+2930808,Souto Soares,BA
+2930907,Tabocas do Brejo Velho,BA
+2931004,Tanhaçu,BA
+2931053,Tanque Novo,BA
+2931103,Tanquinho,BA
+2931202,Taperoá,BA
+2931301,Tapiramutá,BA
+2931350,Teixeira de Freitas,BA
+2931400,Teodoro Sampaio,BA
+2931509,Teofilândia,BA
+2931608,Teolândia,BA
+2931707,Terra Nova,BA
+2931806,Tremedal,BA
+2931905,Tucano,BA
+2932002,Uauá,BA
+2932101,Ubaíra,BA
+2932200,Ubaitaba,BA
+2932309,Ubatã,BA
+2932408,Uibaí,BA
+2932457,Umburanas,BA
+2932507,Una,BA
+2932606,Urandi,BA
+2932705,Uruçuca,BA
+2932804,Utinga,BA
+2932903,Valença,BA
+2933000,Valente,BA
+2933059,Várzea da Roça,BA
+2933109,Várzea do Poço,BA
+2933158,Várzea Nova,BA
+2933174,Varzedo,BA
+2933208,Vera Cruz,BA
+2933257,Vereda,BA
+2933307,Vitória da Conquista,BA
+2933406,Wagner,BA
+2933455,Wanderley,BA
+2933505,Wenceslau Guimarães,BA
+2933604,Xique-Xique,BA
+2600054,Abreu e Lima,PE
+2600104,Afogados da Ingazeira,PE
+2600203,Afrânio,PE
+2600302,Agrestina,PE
+2600401,Água Preta,PE
+2600500,Águas Belas,PE
+2600609,Alagoinha,PE
+2600708,Aliança,PE
+2600807,Altinho,PE
+2600906,Amaraji,PE
+2601003,Angelim,PE
+2601052,Araçoiaba,PE
+2601102,Araripina,PE
+2601201,Arcoverde,PE
+2601300,Barra de Guabiraba,PE
+2601409,Barreiros,PE
+2601508,Belém de Maria,PE
+2601607,Belém do São Francisco,PE
+2601706,Belo Jardim,PE
+2601805,Betânia,PE
+2601904,Bezerros,PE
+2602001,Bodocó,PE
+2602100,Bom Conselho,PE
+2602209,Bom Jardim,PE
+2602308,Bonito,PE
+2602407,Brejão,PE
+2602506,Brejinho,PE
+2602605,Brejo da Madre de Deus,PE
+2602704,Buenos Aires,PE
+2602803,Buíque,PE
+2602902,Cabo de Santo Agostinho,PE
+2603009,Cabrobó,PE
+2603108,Cachoeirinha,PE
+2603207,Caetés,PE
+2603306,Calçado,PE
+2603405,Calumbi,PE
+2603454,Camaragibe,PE
+2603504,Camocim de São Félix,PE
+2603603,Camutanga,PE
+2603702,Canhotinho,PE
+2603801,Capoeiras,PE
+2603900,Carnaíba,PE
+2603926,Carnaubeira da Penha,PE
+2604007,Carpina,PE
+2604106,Caruaru,PE
+2604155,Casinhas,PE
+2604205,Catende,PE
+2604304,Cedro,PE
+2604403,Chã de Alegria,PE
+2604502,Chã Grande,PE
+2604601,Condado,PE
+2604700,Correntes,PE
+2604809,Cortês,PE
+2604908,Cumaru,PE
+2605004,Cupira,PE
+2605103,Custódia,PE
+2605152,Dormentes,PE
+2605202,Escada,PE
+2605301,Exu,PE
+2605400,Feira Nova,PE
+2605459,Fernando de Noronha,PE
+2605509,Ferreiros,PE
+2605608,Flores,PE
+2605707,Floresta,PE
+2605806,Frei Miguelinho,PE
+2605905,Gameleira,PE
+2606002,Garanhuns,PE
+2606101,Glória do Goitá,PE
+2606200,Goiana,PE
+2606309,Granito,PE
+2606408,Gravatá,PE
+2606507,Iati,PE
+2606606,Ibimirim,PE
+2606705,Ibirajuba,PE
+2606804,Igarassu,PE
+2606903,Iguaracy,PE
+2607000,Inajá,PE
+2607109,Ingazeira,PE
+2607208,Ipojuca,PE
+2607307,Ipubi,PE
+2607406,Itacuruba,PE
+2607505,Itaíba,PE
+2607604,Ilha de Itamaracá,PE
+2607653,Itambé,PE
+2607703,Itapetim,PE
+2607752,Itapissuma,PE
+2607802,Itaquitinga,PE
+2607901,Jaboatão dos Guararapes,PE
+2607950,Jaqueira,PE
+2608008,Jataúba,PE
+2608057,Jatobá,PE
+2608107,João Alfredo,PE
+2608206,Joaquim Nabuco,PE
+2608255,Jucati,PE
+2608305,Jupi,PE
+2608404,Jurema,PE
+2608453,Lagoa do Carro,PE
+2608503,Lagoa de Itaenga,PE
+2608602,Lagoa do Ouro,PE
+2608701,Lagoa dos Gatos,PE
+2608750,Lagoa Grande,PE
+2608800,Lajedo,PE
+2608909,Limoeiro,PE
+2609006,Macaparana,PE
+2609105,Machados,PE
+2609154,Manari,PE
+2609204,Maraial,PE
+2609303,Mirandiba,PE
+2609402,Moreno,PE
+2609501,Nazaré da Mata,PE
+2609600,Olinda,PE
+2609709,Orobó,PE
+2609808,Orocó,PE
+2609907,Ouricuri,PE
+2610004,Palmares,PE
+2610103,Palmeirina,PE
+2610202,Panelas,PE
+2610301,Paranatama,PE
+2610400,Parnamirim,PE
+2610509,Passira,PE
+2610608,Paudalho,PE
+2610707,Paulista,PE
+2610806,Pedra,PE
+2610905,Pesqueira,PE
+2611002,Petrolândia,PE
+2611101,Petrolina,PE
+2611200,Poção,PE
+2611309,Pombos,PE
+2611408,Primavera,PE
+2611507,Quipapá,PE
+2611533,Quixaba,PE
+2611606,Recife,PE
+2611705,Riacho das Almas,PE
+2611804,Ribeirão,PE
+2611903,Rio Formoso,PE
+2612000,Sairé,PE
+2612109,Salgadinho,PE
+2612208,Salgueiro,PE
+2612307,Saloá,PE
+2612406,Sanharó,PE
+2612455,Santa Cruz,PE
+2612471,Santa Cruz da Baixa Verde,PE
+2612505,Santa Cruz do Capibaribe,PE
+2612554,Santa Filomena,PE
+2612604,Santa Maria da Boa Vista,PE
+2612703,Santa Maria do Cambucá,PE
+2612802,Santa Terezinha,PE
+2612901,São Benedito do Sul,PE
+2613008,São Bento do Una,PE
+2613107,São Caitano,PE
+2613206,São João,PE
+2613305,São Joaquim do Monte,PE
+2613404,São José da Coroa Grande,PE
+2613503,São José do Belmonte,PE
+2613602,São José do Egito,PE
+2613701,São Lourenço da Mata,PE
+2613800,São Vicente Férrer,PE
+2613909,Serra Talhada,PE
+2614006,Serrita,PE
+2614105,Sertânia,PE
+2614204,Sirinhaém,PE
+2614303,Moreilândia,PE
+2614402,Solidão,PE
+2614501,Surubim,PE
+2614600,Tabira,PE
+2614709,Tacaimbó,PE
+2614808,Tacaratu,PE
+2614857,Tamandaré,PE
+2615003,Taquaritinga do Norte,PE
+2615102,Terezinha,PE
+2615201,Terra Nova,PE
+2615300,Timbaúba,PE
+2615409,Toritama,PE
+2615508,Tracunhaém,PE
+2615607,Trindade,PE
+2615706,Triunfo,PE
+2615805,Tupanatinga,PE
+2615904,Tuparetama,PE
+2616001,Venturosa,PE
+2616100,Verdejante,PE
+2616183,Vertente do Lério,PE
+2616209,Vertentes,PE
+2616308,Vicência,PE
+2616407,Vitória de Santo Antão,PE
+2616506,Xexéu,PE
+2400109,Acari,RN
+2400208,Assú,RN
+2400307,Afonso Bezerra,RN
+2400406,Água Nova,RN
+2400505,Alexandria,RN
+2400604,Almino Afonso,RN
+2400703,Alto do Rodrigues,RN
+2400802,Angicos,RN
+2400901,Antônio Martins,RN
+2401008,Apodi,RN
+2401107,Areia Branca,RN
+2401206,Arez,RN
+2401305,Campo Grande,RN
+2401404,Baía Formosa,RN
+2401453,Baraúna,RN
+2401503,Barcelona,RN
+2401602,Bento Fernandes,RN
+2401651,Bodó,RN
+2401701,Bom Jesus,RN
+2401800,Brejinho,RN
+2401859,Caiçara do Norte,RN
+2401909,Caiçara do Rio do Vento,RN
+2402006,Caicó,RN
+2402105,Campo Redondo,RN
+2402204,Canguaretama,RN
+2402303,Caraúbas,RN
+2402402,Carnaúba dos Dantas,RN
+2402501,Carnaubais,RN
+2402600,Ceará-Mirim,RN
+2402709,Cerro Corá,RN
+2402808,Coronel Ezequiel,RN
+2402907,Coronel João Pessoa,RN
+2403004,Cruzeta,RN
+2403103,Currais Novos,RN
+2403202,Doutor Severiano,RN
+2403251,Parnamirim,RN
+2403301,Encanto,RN
+2403400,Equador,RN
+2403509,Espírito Santo,RN
+2403608,Extremoz,RN
+2403707,Felipe Guerra,RN
+2403756,Fernando Pedroza,RN
+2403806,Florânia,RN
+2403905,Francisco Dantas,RN
+2404002,Frutuoso Gomes,RN
+2404101,Galinhos,RN
+2404200,Goianinha,RN
+2404309,Governador Dix-Sept Rosado,RN
+2404408,Grossos,RN
+2404507,Guamaré,RN
+2404606,Ielmo Marinho,RN
+2404705,Ipanguaçu,RN
+2404804,Ipueira,RN
+2404853,Itajá,RN
+2404903,Itaú,RN
+2405009,Jaçanã,RN
+2405108,Jandaíra,RN
+2405207,Janduís,RN
+2405306,Januário Cicco,RN
+2405405,Japi,RN
+2405504,Jardim de Angicos,RN
+2405603,Jardim de Piranhas,RN
+2405702,Jardim do Seridó,RN
+2405801,João Câmara,RN
+2405900,João Dias,RN
+2406007,José da Penha,RN
+2406106,Jucurutu,RN
+2406155,Jundiá,RN
+2406205,Lagoa d'Anta,RN
+2406304,Lagoa de Pedras,RN
+2406403,Lagoa de Velhos,RN
+2406502,Lagoa Nova,RN
+2406601,Lagoa Salgada,RN
+2406700,Lajes,RN
+2406809,Lajes Pintadas,RN
+2406908,Lucrécia,RN
+2407005,Luís Gomes,RN
+2407104,Macaíba,RN
+2407203,Macau,RN
+2407252,Major Sales,RN
+2407302,Marcelino Vieira,RN
+2407401,Martins,RN
+2407500,Maxaranguape,RN
+2407609,Messias Targino,RN
+2407708,Montanhas,RN
+2407807,Monte Alegre,RN
+2407906,Monte das Gameleiras,RN
+2408003,Mossoró,RN
+2408102,Natal,RN
+2408201,Nísia Floresta,RN
+2408300,Nova Cruz,RN
+2408409,Olho d'Água do Borges,RN
+2408508,Ouro Branco,RN
+2408607,Paraná,RN
+2408706,Paraú,RN
+2408805,Parazinho,RN
+2408904,Parelhas,RN
+2408953,Rio do Fogo,RN
+2409100,Passa e Fica,RN
+2409209,Passagem,RN
+2409308,Patu,RN
+2409332,Santa Maria,RN
+2409407,Pau dos Ferros,RN
+2409506,Pedra Grande,RN
+2409605,Pedra Preta,RN
+2409704,Pedro Avelino,RN
+2409803,Pedro Velho,RN
+2409902,Pendências,RN
+2410009,Pilões,RN
+2410108,Poço Branco,RN
+2410207,Portalegre,RN
+2410256,Porto do Mangue,RN
+2410306,Serra Caiada,RN
+2410405,Pureza,RN
+2410504,Rafael Fernandes,RN
+2410603,Rafael Godeiro,RN
+2410702,Riacho da Cruz,RN
+2410801,Riacho de Santana,RN
+2410900,Riachuelo,RN
+2411007,Rodolfo Fernandes,RN
+2411056,Tibau,RN
+2411106,Ruy Barbosa,RN
+2411205,Santa Cruz,RN
+2411403,Santana do Matos,RN
+2411429,Santana do Seridó,RN
+2411502,Santo Antônio,RN
+2411601,São Bento do Norte,RN
+2411700,São Bento do Trairí,RN
+2411809,São Fernando,RN
+2411908,São Francisco do Oeste,RN
+2412005,São Gonçalo do Amarante,RN
+2412104,São João do Sabugi,RN
+2412203,São José de Mipibu,RN
+2412302,São José do Campestre,RN
+2412401,São José do Seridó,RN
+2412500,São Miguel,RN
+2412559,São Miguel do Gostoso,RN
+2412609,São Paulo do Potengi,RN
+2412708,São Pedro,RN
+2412807,São Rafael,RN
+2412906,São Tomé,RN
+2413003,São Vicente,RN
+2413102,Senador Elói de Souza,RN
+2413201,Senador Georgino Avelino,RN
+2413300,Serra de São Bento,RN
+2413359,Serra do Mel,RN
+2413409,Serra Negra do Norte,RN
+2413508,Serrinha,RN
+2413557,Serrinha dos Pintos,RN
+2413607,Severiano Melo,RN
+2413706,Sítio Novo,RN
+2413805,Taboleiro Grande,RN
+2413904,Taipu,RN
+2414001,Tangará,RN
+2414100,Tenente Ananias,RN
+2414159,Tenente Laurentino Cruz,RN
+2414209,Tibau do Sul,RN
+2414308,Timbaúba dos Batistas,RN
+2414407,Touros,RN
+2414456,Triunfo Potiguar,RN
+2414506,Umarizal,RN
+2414605,Upanema,RN
+2414704,Várzea,RN
+2414753,Venha-Ver,RN
+2414803,Vera Cruz,RN
+2414902,Viçosa,RN
+2415008,Vila Flor,RN
