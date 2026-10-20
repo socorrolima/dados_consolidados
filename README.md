@@ -129,14 +129,16 @@ para vincular mais de um município) e `--papel admin` cria um admin
       dashboard carregando dado real).
 - [ ] Rodar `python -m scripts.relatorio_ingestoes` e confirmar 0 falhas
       recentes antes do anúncio de lançamento.
-- [ ] CI (`ci.yml`) obrigatório antes de merge — branch protection ainda
-      não configurada em Settings > Branches (ver observação abaixo).
+- [x] CI (`ci.yml`) obrigatório antes de merge — branch protection
+      configurada na `main` (checks `lint` e `test`), ver observação abaixo.
 - [ ] Revisar se o volume de `ingestao_execucao` acumulado não está
       crescendo sem limite (sem rotina de limpeza nesta fase).
 
 ### Sobre CI obrigatório em PR
 
-Repositório: https://github.com/socorrolima/dados_consolidados (privado).
-"CI obrigatório" (branch protection exigindo os checks do `ci.yml` antes
-de merge) ainda falta configurar em Settings > Branches do repositório —
-é uma configuração do GitHub, não deste código.
+Repositório: https://github.com/socorrolima/dados_consolidados (público —
+o GitHub Free só aplica branch protection de verdade em repositório
+público; era privado até essa troca). Branch protection na `main` exige
+os checks `lint` e `test` do `ci.yml` antes de merge. Push direto na
+`main` deixou de ser o fluxo normal a partir daqui — mudanças futuras vão
+por pull request.
