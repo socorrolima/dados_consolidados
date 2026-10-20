@@ -35,6 +35,10 @@ class Config:
     # Não guardamos segredo de assinatura: a verificação é por chave
     # pública (JWKS), não HS256/segredo compartilhado.
     SUPABASE_URL = os.environ.get("SUPABASE_URL", "")
+    # Chave pública ("anon key") do projeto — é feita pra ir no front-end
+    # (o Supabase já assume isso; quem protege o dado é a verificação do
+    # JWT em auth_service.py, não o sigilo desta chave).
+    SUPABASE_ANON_KEY = os.environ.get("SUPABASE_ANON_KEY", "")
 
 
 class DevConfig(Config):

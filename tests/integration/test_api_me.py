@@ -43,13 +43,14 @@ def test_me_com_token_valido_retorna_usuario_e_municipios(app, client):
         municipio = DimMunicipio(codigo_ibge="2927408", nome="Salvador", uf="BA")
         db.session.add(municipio)
         db.session.commit()
+        municipio_id = municipio.id
         usuario = DimUsuario(
             id=USUARIO_ID, email="gestora@exemplo.gov.br", nome="Gestora"
         )
         db.session.add(usuario)
         db.session.commit()
         db.session.add(
-            UsuarioMunicipio(usuario_id=usuario.id, municipio_id=municipio.id)
+            UsuarioMunicipio(usuario_id=usuario.id, municipio_id=municipio_id)
         )
         db.session.commit()
 
@@ -63,7 +64,7 @@ def test_me_com_token_valido_retorna_usuario_e_municipios(app, client):
     corpo = resp.get_json()
     assert corpo["id"] == USUARIO_ID
     assert corpo["email"] == "gestora@exemplo.gov.br"
-    assert len(corpo["municipios"]) == 1
+    assert corpo["municipios"] == [{"id": municipio_id, "nome": "Salvador", "uf": "BA"}]
 
 
 def test_me_com_token_de_usuario_nao_cadastrado_retorna_403(app, client):

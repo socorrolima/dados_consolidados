@@ -62,3 +62,5 @@ class UsuarioMunicipio(db.Model):
     __table_args__ = (
         db.UniqueConstraint("usuario_id", "municipio_id", name="uq_usuario_municipio"),
     )
+
+    municipio = db.relationship("DimMunicipio")

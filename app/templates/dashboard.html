@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block titulo %}Dashboard — Painel SUAS{% endblock %}
+
+{% block head_extra %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+{% endblock %}
+
+{% block body %}
+<header class="cabecalho">
+  <h1>Painel SUAS</h1>
+  <div class="cabecalho-usuario">
+    <select id="seletor-municipio"></select>
+    <span id="nome-usuario"></span>
+    <button id="botao-sair">Sair</button>
+  </div>
+</header>
+
+<nav id="abas-categoria" class="abas"></nav>
+
+<main class="conteudo-dashboard">
+  <div class="selecao-indicador">
+    <label for="seletor-indicador">Indicador</label>
+    <select id="seletor-indicador"></select>
+  </div>
+
+  <section class="graficos">
+    <div class="cartao-grafico">
+      <h2>Últimos 6 meses</h2>
+      <canvas id="grafico-linha"></canvas>
+    </div>
+    <div class="cartao-grafico">
+      <h2>Comparação (mês mais recente)</h2>
+      <canvas id="grafico-barra"></canvas>
+    </div>
+  </section>
+</main>
+
+<script src="{{ url_for('static', filename='js/api.js') }}"></script>
+<script src="{{ url_for('static', filename='js/charts.js') }}"></script>
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+{% endblock %}

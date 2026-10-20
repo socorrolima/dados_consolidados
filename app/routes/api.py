@@ -19,15 +19,23 @@ def saude():
 @requer_autenticacao
 def me():
     """Prova a autenticação de ponta a ponta: devolve o usuário resolvido
-    do JWT e os municípios que ele pode ver. Útil pro frontend bootstrapar
-    a sessão e pra verificar a configuração do Supabase em produção."""
+    do JWT e os municípios que ele pode ver (com nome/UF, pro front montar
+    o seletor sem mais uma chamada). Útil pro frontend bootstrapar a
+    sessão e pra verificar a configuração do Supabase em produção."""
     usuario = g.usuario_atual
     return jsonify(
         id=usuario.id,
         email=usuario.email,
         nome=usuario.nome,
         papel=usuario.papel,
-        municipios=[vinculo.municipio_id for vinculo in usuario.vinculos_municipio],
+        municipios=[
+            {
+                "id": vinculo.municipio.id,
+                "nome": vinculo.municipio.nome,
+                "uf": vinculo.municipio.uf,
+            }
+            for vinculo in usuario.vinculos_municipio
+        ],
     )
 
 
