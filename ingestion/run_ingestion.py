@@ -16,6 +16,7 @@ from datetime import date, datetime, timezone
 
 from app import create_app
 from app.extensions import db
+from app.models.indicador import DimIndicador
 from app.models.ingestao import (
     STATUS_FALHOU,
     STATUS_SUCESSO,
@@ -24,6 +25,10 @@ from app.models.ingestao import (
 from app.models.municipio import DimMunicipio
 from ingestion.datasets.misocial import buscar_municipio_mes
 from ingestion.datasets.misocial import campo_sagi as campo_sagi_misocial
+from ingestion.datasets.misocial_mes_equipamento import (
+    CODIGO_INDICADOR_QTD_ENTIDADES,
+    contar_entidades_por_municipio,
+)
 from ingestion.datasets.misocial_mes_estado import buscar_estado_mes
 from ingestion.datasets.misocial_mes_estado import campo_sagi as campo_sagi_estado
 from ingestion.loader import upsert_fato_estado_mes, upsert_fato_municipio_mes
@@ -122,9 +127,42 @@ def _ingerir_misocial_mes_estado(
     _ingerir(docs, validar, upsert_fato_estado_mes, ingestao)
 
 
+def _ingerir_misocial_mes_equipamento(
+    ufs: list[str], anomes_s: str, ingestao: IngestaoExecucao
+) -> None:
+    """CNEAS: contagem de entidades por município/mês (ver docstring do
+    módulo ingestion.datasets.misocial_mes_equipamento). Reaproveita
+    valida_doc_municipio_mes montando "documentos" sintéticos com a
+    contagem já calculada via facet, em vez de linhas brutas da API."""
+    indicador = DimIndicador.query.filter_by(
+        codigo=CODIGO_INDICADOR_QTD_ENTIDADES
+    ).first()
+    if indicador is None:
+        raise RuntimeError(
+            f"indicador {CODIGO_INDICADOR_QTD_ENTIDADES!r} não cadastrado em "
+            "dim_indicador — rode scripts.seed_indicadores antes de ingerir"
+        )
+
+    contagens = contar_entidades_por_municipio(ufs, anomes_s)
+    docs = [
+        {"codigo_ibge": codigo6, "anomes_s": anomes_s, "qtd_entidades": contagem}
+        for codigo6, contagem in contagens.items()
+    ]
+    indicador_id_por_campo = {"qtd_entidades": indicador.id}
+    municipio_por_codigo6 = _mapa_municipio_por_codigo6()
+
+    def validar(doc):
+        return valida_doc_municipio_mes(
+            doc, indicador_id_por_campo, municipio_por_codigo6
+        )
+
+    _ingerir(docs, validar, upsert_fato_municipio_mes, ingestao)
+
+
 _DATASETS = {
     "misocial": _ingerir_misocial,
     "misocial_mes_estado": _ingerir_misocial_mes_estado,
+    "misocial_mes_equipamento": _ingerir_misocial_mes_equipamento,
 }
 
 

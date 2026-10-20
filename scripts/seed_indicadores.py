@@ -19,10 +19,16 @@ Gás, CEBAS, insegurança alimentar) e o ADA tem variantes por tipo de
 família (indígena, quilombola, ribeirinha etc.), não só os totais — fora
 do escopo aprovado para esta fase, ficam para quando houver demanda.
 
-CNEAS (entidades socioassistenciais) não é catalogado aqui: descobrimos
-que é um registro por entidade (CNPJ, razão social, endereço), não um
-indicador agregado — não cabe no modelo fato/dimensão atual sem uma
-decisão de schema à parte.
+CNEAS (misocial_mes_equipamento) é um registro por entidade (CNPJ, razão
+social, endereço) — decidimos não guardar esse detalhe (evita manter CNPJ/
+endereço de terceiros sem necessidade, e evita os campos de texto com
+mojibake do recurso, como `situacao_cadastro`). Em vez disso, catalogamos
+só a CONTAGEM de entidades por município/mês como indicador agregado —
+granularidade municipio_mes (mesma tabela fato do SUASWEB), calculada via
+facet do Solr (contagem, nunca o registro individual) em
+ingestion/datasets/misocial_mes_equipamento.py. A anomes_s desse recurso
+não é anual como os títulos do dados.gov.br sugeriam — confirmamos contra
+a API que é mensal (~monthly, cadência irregular desde 2022).
 """
 
 import logging
@@ -43,6 +49,10 @@ logger = logging.getLogger(__name__)
 
 DATASET_MISOCIAL = "misocial"
 DATASET_MISOCIAL_MES_ESTADO = "misocial_mes_estado"
+DATASET_MISOCIAL_MES_EQUIPAMENTO = "misocial_mes_equipamento"
+CODIGO_INDICADOR_CNEAS_QTD_ENTIDADES = (
+    f"{DATASET_MISOCIAL_MES_EQUIPAMENTO}.cneas_qtd_entidades_cadastradas"
+)
 UNIDADE_REAIS = "reais"
 UNIDADE_UNIDADES = "unidades"
 UNIDADE_INDICE = "indice"
@@ -63,6 +73,7 @@ CATEGORIA_ACAO_CONTINUADA = "acao_continuada"
 CATEGORIA_IGD_E = "igd_e"
 CATEGORIA_ACAO_DISTRIBUICAO_ALIMENTOS = "acao_distribuicao_alimentos"
 CATEGORIA_PETI = "peti"
+CATEGORIA_CNEAS = "cneas"
 
 # (sufixo do campo sem o prefixo de escopo, nome de exibição, categoria)
 _REPASSE_CAMPOS = [
@@ -356,6 +367,23 @@ def _monta_catalogo() -> list[dict]:
         )
 
     catalogo.extend(_monta_catalogo_estado_mes())
+
+    catalogo.append(
+        {
+            "codigo": CODIGO_INDICADOR_CNEAS_QTD_ENTIDADES,
+            "nome_exibicao": "CNEAS — Quantidade de entidades cadastradas",
+            "dataset_origem": DATASET_MISOCIAL_MES_EQUIPAMENTO,
+            "granularidade": GRANULARIDADE_MUNICIPIO_MES,
+            "unidade": UNIDADE_UNIDADES,
+            "categoria": CATEGORIA_CNEAS,
+            "descricao": (
+                "Quantidade de entidades cadastradas no Cadastro Nacional de "
+                "Entidades de Assistência Social (CNEAS) por município/mês — "
+                "contagem agregada via facet da API, não traz CNPJ, razão "
+                "social nem endereço de cada entidade."
+            ),
+        }
+    )
 
     codigos = [item["codigo"] for item in catalogo]
     if len(codigos) != len(set(codigos)):
