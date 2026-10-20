@@ -1,9 +1,18 @@
 import os
 
-from flask import Flask
+from dotenv import load_dotenv
 
-from app.config import CONFIG_BY_NAME
-from app.extensions import db
+# Precisa rodar antes de qualquer import que leia variável de ambiente
+# (app.config lê no corpo da classe, na hora do import). Carregar aqui —
+# não só em wsgi.py — garante que todo mundo que chama create_app()
+# (scripts/*, ingestion/run_ingestion.py, não só o servidor web) também
+# lê o .env, em vez de só as variáveis já exportadas no shell.
+load_dotenv()
+
+from flask import Flask  # noqa: E402
+
+from app.config import CONFIG_BY_NAME  # noqa: E402
+from app.extensions import db  # noqa: E402
 
 
 def _checar_env_obrigatorias(config_name: str) -> None:

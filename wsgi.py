@@ -1,10 +1,6 @@
 import os
 
-from dotenv import load_dotenv
-
-load_dotenv()
-
-from app import create_app  # noqa: E402 — precisa rodar depois do load_dotenv()
+from app import create_app  # já carrega o .env (ver app/__init__.py)
 
 app = create_app()
 
