@@ -129,15 +129,14 @@ para vincular mais de um município) e `--papel admin` cria um admin
       dashboard carregando dado real).
 - [ ] Rodar `python -m scripts.relatorio_ingestoes` e confirmar 0 falhas
       recentes antes do anúncio de lançamento.
-- [ ] CI (`ci.yml`) passando obrigatoriamente antes de merge — exige
-      repositório remoto no GitHub com branch protection configurada
-      (ver observação abaixo).
+- [ ] CI (`ci.yml`) obrigatório antes de merge — branch protection ainda
+      não configurada em Settings > Branches (ver observação abaixo).
 - [ ] Revisar se o volume de `ingestao_execucao` acumulado não está
       crescendo sem limite (sem rotina de limpeza nesta fase).
 
 ### Sobre CI obrigatório em PR
 
-Este repositório ainda não tem remote configurado — "CI obrigatório"
-(branch protection exigindo os checks do `ci.yml` antes de merge) é uma
-configuração do GitHub (Settings > Branches), não deste código. Falta
-criar o repositório remoto e configurar isso lá antes do go-live.
+Repositório: https://github.com/socorrolima/dados_consolidados (privado).
+"CI obrigatório" (branch protection exigindo os checks do `ci.yml` antes
+de merge) ainda falta configurar em Settings > Branches do repositório —
+é uma configuração do GitHub, não deste código.
