@@ -34,6 +34,10 @@ class DimUsuario(db.Model):
         ),
     )
 
+    vinculos_municipio = db.relationship(
+        "UsuarioMunicipio", backref="usuario", cascade="all, delete-orphan"
+    )
+
 
 class UsuarioMunicipio(db.Model):
     __tablename__ = "usuario_municipio"

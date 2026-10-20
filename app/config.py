@@ -30,8 +30,11 @@ def resolve_database_url(url: str) -> str:
 
 class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    # URL do projeto Supabase — usado só para derivar o endpoint JWKS
+    # ({SUPABASE_URL}/auth/v1/.well-known/jwks.json) em auth_service.py.
+    # Não guardamos segredo de assinatura: a verificação é por chave
+    # pública (JWKS), não HS256/segredo compartilhado.
     SUPABASE_URL = os.environ.get("SUPABASE_URL", "")
-    SUPABASE_JWT_SECRET = os.environ.get("SUPABASE_JWT_SECRET", "")
 
 
 class DevConfig(Config):
